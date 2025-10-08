@@ -35,6 +35,12 @@ import torch
 from torch import nn
 from torch.utils.data import Dataset, DataLoader
 import nltk
+import math
+import numpy as np
+import random
+import subprocess
+import sys
+from pathlib import Path
 from nltk.tokenize import word_tokenize
 nltk.download('punkt', quiet=True)
 nltk.download('punkt_tab', quiet=True)
@@ -147,10 +153,7 @@ if __name__ == "__main__":
 # - prints sample translations + token-level confidence
 # - optional BLEU evaluation (requires sacrebleu and an eval dataset)
 
-import os
-import math
-import torch
-import numpy as np
+
 
 def install_if_missing(pkg):
     import subprocess, sys
@@ -336,12 +339,7 @@ if __name__ == "__main__":
 # Final optimized pipeline: SentencePiece + Attention Seq2Seq (LSTM) + Optimizer Comparison + BLEU
 # Run in one cell. Designed for speed (uses sample ~1000 pairs) but realistic pipeline.
 
-import os
-import random
-import math
-import subprocess
-import sys
-from pathlib import Path
+
 
 # -------------------------
 # Auto-install required libs (if missing)
@@ -560,7 +558,7 @@ def run_pipeline(en_file="train.en", hi_file="train.hi",
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print("Device:", device)
     # 1) dataset fallback if missing
-    en_file, hi_file = create_fallback_dataset(en_file, hi_file, n_pairs=2000)
+    en_file, hi_file = create_fallback_dataset(en_file, hi_file, n_pairs=6516)
 
     # train SP models (source and target) on combined corpus for consistent subwords
     sp_src = train_sentencepiece(en_file, hi_file, model_prefix="sp_src", vocab_size=sp_vocab)
@@ -698,3 +696,4 @@ def run_pipeline(en_file="train.en", hi_file="train.hi",
 if __name__ == "__main__":
     # sample_size ~ 1000 is a good tradeoff; increase for better BLEU (slower)
     results = run_pipeline(en_file="train.en", hi_file="train.hi", sample_size=1000, batch_size=16, epochs=4, sp_vocab=4000, lr_sgd=0.7)
+
