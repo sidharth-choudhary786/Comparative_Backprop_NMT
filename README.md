@@ -18,10 +18,10 @@ for English-Hindi translation using Seq2Seq model with attention mechanism.
 | SGD       | 5.76       | Basic       | 52.16      | 63.03    |
 
 ### Key Achievements
-- **372% improvement** from SGD to RMSProp
+- **206% improvement** from SGD to RMSProp
 - **17.61 BLEU score** achieved with custom model
 - **15-minute training** time on CPU
-- **6,516 parallel sentences** dataset
+- **1000 parallel sentences** dataset
 
 ### Dataset Information (ACCURATE)
 - **Total Samples Used**: 1,000 sentence pairs
