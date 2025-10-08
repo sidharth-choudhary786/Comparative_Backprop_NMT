@@ -94,10 +94,10 @@ python comparative_mnt.py
 
 
 ### Training Results Summary
-RMSProp: BLEU = 17.61  Best
-Adagrad: BLEU = 13.71  Excellent 
-Adam:    BLEU = 9.79   Good
-SGD:     BLEU = 5.76   Basic
+- **RMSProp**: BLEU = 17.61  Best
+- **Adagrad**: BLEU = 13.71  Excellent 
+- **Adam**:    BLEU = 9.79   Good
+- **SGD**:     BLEU = 5.76   Basic
 
 
 
