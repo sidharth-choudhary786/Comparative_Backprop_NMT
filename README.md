@@ -166,7 +166,7 @@ configs/                    # Training configurations
 
 ### Project Journey
 **Sidharth Choudhary** 
-*"This project emerged from practical challenges in deploying NMT for Hindi content. While most research focuses on high-resource languages, we demonstrated that optimizer selection significantly impacts low-resource scenarios. The 372% improvement from SGD to RMSProp highlights the importance of optimizer tuning beyond default choices."*
+*"This project emerged from practical challenges in deploying NMT for Hindi content. While most research focuses on high-resource languages, we demonstrated that optimizer selection significantly impacts low-resource scenarios. The 206% improvement from SGD to RMSProp highlights the importance of optimizer tuning beyond default choices."*
 
 ### Connect & Collaborate
 📧 jattsidh786@gmail.com  
