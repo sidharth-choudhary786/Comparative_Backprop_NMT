@@ -20,9 +20,9 @@ pip install torch==2.0.1
 pip install transformers sentencepiece sacrebleu
 pip install nltk matplotlib numpy pandas
 ```
-```markdown
-### Requirements
 
+### Requirements
+```bash
 torch>=2.0.1
 transformers>=4.30.0
 sentencepiece>=0.1.99
