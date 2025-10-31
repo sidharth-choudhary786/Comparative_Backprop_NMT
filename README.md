@@ -12,15 +12,15 @@ for English-Hindi translation using Seq2Seq model with attention mechanism.
 ### Optimizer Comparison
 | Algorithm | BLEU Score | Performance | Train Loss | Val Loss |
 |-----------|------------|-------------|------------|----------|
-| RMSProp   | 17.63      | Best        | 28.80      | 49.90    |
-| Adagrad   | 13.73      | Excellent   | 30.38      | 52.24    |
-| Adam      | 9.79       | Good        | 43.03      | 57.52    |
-| SGD       | 5.76       | Basic       | 52.16      | 63.03    |
+| RMSProp   | 18.22      | Best        | 31.70      | 50.44    |
+| Adagrad   | 17.57      | Excellent   | 30.08      | 49.93    |
+| Adam      | 10.66      | Good        | 43.80      | 56.92    |
+| SGD       | 4.57       | Basic       | 51.70      | 62.46    |
 
 ### Key Achievements
-- **206% improvement** from SGD to RMSProp
-- **17.61 BLEU score** achieved with custom model
-- **15-minute training** time on CPU
+- **299% improvement** from SGD (4.57) to RMSProp (18.22)
+- **18.22 BLEU score** achieved with custom model
+- **6-minute training** time on GPU
 - **1000 parallel sentences** dataset
 
 ### Dataset Information (ACCURATE)
@@ -94,10 +94,10 @@ python comparative_mnt.py
 
 
 ### Training Results Summary
-- **RMSProp**: BLEU = 17.61  Best
-- **Adagrad**: BLEU = 13.71  Excellent 
-- **Adam**:    BLEU = 9.79   Good
-- **SGD**:     BLEU = 5.76   Basic
+- **RMSProp**: BLEU = 18.22  Best
+- **Adagrad**: BLEU = 17.57  Excellent 
+- **Adam**:    BLEU = 10.66  Good
+- **SGD**:     BLEU = 4.57   Basic
 
 
 
