@@ -1,15 +1,71 @@
 # Neural Machine Translation: Optimizer Analysis
 
-## Research Overview
-**Exploring optimizer efficacy for low-resource language pairs** - 
-Comprehensive comparison of SGD, Adam, RMSProp, Adagrad optimizers 
-for English-Hindi translation using Seq2Seq model with attention mechanism.
+## Project Overview
+Comparative analysis of optimization algorithms (SGD, Adam, RMSProp, Adagrad) for English-Hindi Neural Machine Translation using Seq2Seq architecture with attention mechanism.
 
-*Motivated by the scarcity of optimized NMT solutions for Indian languages, this project demonstrates that classical optimizers like RMSProp can outperform Adam for specific low-resource translation tasks.*
+## Table of Contents
+- [Installation](#installation)
+- [Usage](#usage)
+- [Dataset](#dataset)
+- [Project Structure](#project-structure)
+- [Results](#results)
+- [Contributions](#contributions)
 
-## Performance Results
+## Installation
 
-### Optimizer Comparison
+### Dependencies
+```bash
+# Install required packages
+pip install torch==2.0.1
+pip install transformers sentencepiece sacrebleu
+pip install nltk matplotlib numpy pandas
+```
+```markdown
+### Requirements
+
+torch>=2.0.1
+transformers>=4.30.0
+sentencepiece>=0.1.99
+sacrebleu>=2.3.0
+nltk>=3.8.0
+matplotlib>=3.7.0
+numpy>=1.24.0
+```
+
+## Usage
+
+```bash
+# Run Complete Pipeline
+python comparative_mmt.py
+```
+## Dataset
+### Download Instructions
+The dataset is automatically downloaded and processed by the code:
+- **Source**: Auto-generated parallel corpus with fallback mechanism
+- **Total Samples Used**: 1,000 English-Hindi sentence pairs
+- **Training Set**: 900 sentences (90%)
+- **Validation Set**: 100 sentences (10%)
+- **Dataset Source**: Auto-generated parallel corpus
+- **Purpose**: Efficient optimizer comparison with representative data
+- **Processing**: SentencePiece tokenization (4000 subwords)
+
+### File Structure
+```bash
+train.en    # English sentences
+train.hi    # Hindi translations
+```
+## Project Structure
+### File Descriptions
+```bash
+comparative_mmt.py
+requirements.txt
+README.md
+```
+
+## Results
+
+### Optimizer Performance Comparison
+
 | Algorithm | BLEU Score | Performance | Train Loss | Val Loss |
 |-----------|------------|-------------|------------|----------|
 | RMSProp   | 18.22      | Best        | 31.70      | 50.44    |
@@ -17,124 +73,19 @@ for English-Hindi translation using Seq2Seq model with attention mechanism.
 | Adam      | 10.66      | Good        | 43.80      | 56.92    |
 | SGD       | 4.57       | Basic       | 51.70      | 62.46    |
 
-### Key Achievements
-- **299% improvement** from SGD (4.57) to RMSProp (18.22)
-- **18.22 BLEU score** achieved with custom model
-- **6-minute training** time on GPU
-- **1000 parallel sentences** dataset
+### Key Finding
+- **RMSProp performed best** with 18.22 BLEU score
+- **299% improvement** over SGD baseline
+- **Adagrad showed strong performance** 
+- **Adam underperformed** in this scenario
 
-### Dataset Information (ACCURATE)
-- **Total Samples Used**: 1,000 sentence pairs
-- **Training Set**: 900 sentences (90%)
-- **Validation Set**: 100 sentences (10%)
-- **Dataset Source**: Curated parallel corpus subset
-- **Purpose**: Efficient optimizer comparison with representative data
-
-  
-### Technical Implementation
-
-#### Model Architecture
-English → Tokenization → Encoder → Attention → Decoder → Hindi
-
-#### Implementation Challenges & Solutions
-- **Vocabulary Size**: Limited to 4000 subwords balancing Hindi morphology complexity and model size
-- **Batch Size Constraint**: 16 maximum due to attention mechanism memory requirements on 16GB GPU(not fixed)
-- **Convergence Strategy**: Early stopping at 4 epochs based on validation loss plateau observation
-- **Dataset Quality**: Curated 1,000 parallel sentences ensuring grammatical correctness
-- 
-#### Model Training Details
-- **Early Stopping**: Triggered when validation loss didn't improve for 2 epochs
-- **Gradient Clipping**: Applied at 1.0 to prevent explosion
-- **Learning Rate**: Manually tuned for each optimizer's characteristics
-
-
-### Specifications
-- Embedding: 256 dimensions
-- Hidden Size: 256 units  
-- Vocabulary: 4000 subwords
-- Batch Size: 16
-- Epochs: 4
-
-
-### Usage Example
-```python
-# Sample inference code from our trained model
-from model import load_checkpoint, translate_text
-
-# Load the best performing model (RMSProp trained)
-model = load_checkpoint('checkpoints/rmsprop_best.pth')
-result = translate_text("Hello, how are you?")
-print(result)  # Output: नमस्ते, आप कैसे हैं?
-```
-
-
-
-## Installation & Usage
-## Quick Start
-```bash
-pip install -r requirements.txt
-python comparative_mnt.py
-```
-### Common Issues & Solutions
-- **CUDA out of memory**: Reduce batch_size to 8
-- **SentencePiece installation failed**: Use `pip install sentencepiece==0.1.99`
-- **Model loading error**: Check checkpoint path in config
-
-### Training Insights
-*Based on experimental observations:*
-- **RMSProp** showed fastest convergence with stable gradient updates
-- **Adagrad** performed surprisingly well despite being less popular for NMT
-- **Adam** underperformed potentially due to adaptive learning rate mismatch
-- **SGD** required significantly more epochs to achieve comparable results
-
-### Research Insights
-- **RMSProp's consistency** makes it ideal for sequence tasks
-- **Adam's adaptive learning** sometimes hinders convergence in low-resource scenarios
-- **Classical optimizers** deserve reconsideration in specific NLP tasks
-
-
-### Training Results Summary
-- **RMSProp**: BLEU = 18.22  Best
-- **Adagrad**: BLEU = 17.57  Excellent 
-- **Adam**:    BLEU = 10.66  Good
-- **SGD**:     BLEU = 4.57   Basic
-
-
-
----
-
-# Business Applications
-
-##  Real-world Use Cases 
-- **E-commerce localization** - Translate product descriptions
-- **Multilingual chatbots** - Customer support in Hindi/English
-- **Educational content** - Study materials translation
-- **Healthcare translation** - Medical reports and prescriptions
-
-### Industry Impact 
-- **206% improvement** over baseline SGD
-- **15-minute training** suitable for rapid prototyping
-- **17.61 BLEU score** demonstrating optimizer significance
-
-
-
----
-
-
-## Technical Details
-
-### Experimental Setup
-- **Dataset Size**: 1,000 carefully selected parallel sentences
-- **Split**: 900 training + 100 validation pairs
-- **Sample Quality**: Manually verified for translation accuracy
-- **Scope**: Academic-scale demonstration of optimizer efficacy
-
-### Infrastructure
-**Framework**: PyTorch 2.0.1  
-**Tokenization**: SentencePiece (4000 subwords)  
-**Evaluation**: BLEU score + Human Evaluation  
-**Visualization**: Matplotlib + Seaborn  
-**Hardware**: GPU NVIDIA T4 (16GB)  
+### Training Details
+- **Model**: Seq2Seq with LSTM and attention
+- **Embedding**: 256 dimensions
+- **Hidden Size**: 256 units
+- **Batch Size**: 16
+- **Epochs**: 4
+- **Vocabulary**: 4000 subwords
 
 ### Visualization
 BLEU Score Comparison
@@ -143,50 +94,17 @@ BLEU Score Comparison
 ### Model Architecture 
 English → Embedding(256) → LSTM Encoder → Attention → LSTM Decoder → Hindi Output
 
-
----
-
-## Project Structure
-
-```
-comparative_mmt.py          # Main training script
-utils/                      # Utility functions
-├── data_loader.py          # Data preprocessing
-├── eval_metrics.py         # BLEU score calculation
-└── visualization.py        # Graphs and charts
-models/                     # Model architectures
-├── seq2seq_attention.py
-└── optimizer_configs.py
-configs/                    # Training configurations
-└── params.yaml
+## Common Issues & Solutions
+```bash
+# If sentencepiece installation fails
+pip install sentencepiece==0.1.99
 ```
 
-
-## Developer
-
-### Project Journey
-**Sidharth Choudhary** 
-*"This project emerged from practical challenges in deploying NMT for Hindi content. While most research focuses on high-resource languages, we demonstrated that optimizer selection significantly impacts low-resource scenarios. The 206% improvement from SGD to RMSProp highlights the importance of optimizer tuning beyond default choices."*
-
-### Connect & Collaborate
-📧 jattsidh786@gmail.com  
-🔗 https://www.linkedin.com/in/sidharth-choudhary786  
-🐙 https://github.com/sidharth-choudhary786
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## Contributions
+### Team Members
+- **Sidharth Choudhary**
+- **Ayan Panja** 
+- **Vijay Kumar Prajapat**
 
 
 
