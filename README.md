@@ -9,7 +9,7 @@ Comparative analysis of optimization algorithms (SGD, Adam, RMSProp, Adagrad) fo
 - [Dataset](#dataset)
 - [Project Structure](#project-structure)
 - [Results](#results)
-- [Contributions](#contributions)
+- [Developer](#developer)
 
 ## Installation
 
@@ -100,11 +100,13 @@ English → Embedding(256) → LSTM Encoder → Attention → LSTM Decoder → H
 pip install sentencepiece==0.1.99
 ```
 
-## Contributions
-### Team Members
-- **Sidharth Choudhary**
-- **Ayan Panja** 
-- **Vijay Kumar Prajapat**
+## Developer
+
+### Sidharth Choudhary
+**Email**: jattsidh786@gmail.com  
+**LinkedIn**: [Sidharth Choudhary](https://www.linkedin.com/in/sidharth-choudhary786)  
+**GitHub**: [sidharth-choudhary786](https://github.com/sidharth-choudhary786)  
+**Portfolio**: [All My Projects](https://github.com/sidharth-choudhary786)
 
 
 
